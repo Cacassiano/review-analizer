@@ -30,7 +30,7 @@ public class AnalizerController {
     @GetMapping
     public ResponseEntity<Map<String,List<Comment>>> getPage() throws IOException{
         return ResponseEntity.ok(plataformService.getComments(testUrl));
-
+    }
     // @PostMapping
     // public ResponseEntity<String> makeAnalyze(@RequestBody @Valid AnalyzeReqDTO req)  {
     //     return ResponseEntity.ok().build();
