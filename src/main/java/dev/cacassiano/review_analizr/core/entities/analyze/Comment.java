@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 public class Comment {
-    String stars;
+    int stars;
     String discription;
-
+    int likes;
 }

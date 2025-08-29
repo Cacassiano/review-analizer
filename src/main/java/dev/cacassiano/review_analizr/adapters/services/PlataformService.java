@@ -6,5 +6,5 @@ import java.util.Map;
 import dev.cacassiano.review_analizr.core.entities.analyze.Comment;
 
 public interface PlataformService {
-    Map<String, List<Comment>> getComments(String url);
+    Map<Integer, List<Comment>> getComments(String url);
 }
