@@ -1,7 +1,7 @@
 package dev.cacassiano.review_analizr.adapters.services;
 
-import dev.cacassiano.review_analizr.DTOs.AnalyzeReqDTO;
+import dev.cacassiano.review_analizr.core.entities.analyze.Analyze;
 
 public interface AnalyzeService {
-    AnalyzeReqDTO createAnalyze(String url, String plataforma);
+    Analyze createAnalyze(String url, String plataform);
 }

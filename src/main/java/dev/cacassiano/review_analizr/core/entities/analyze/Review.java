@@ -1,5 +1,7 @@
 package dev.cacassiano.review_analizr.core.entities.analyze;
 
+import java.time.LocalDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,8 +11,9 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @Setter
-public class Comment {
-    int stars;
+public class Review {
+    float stars;
     String discription;
     int likes;
+    LocalDate issued_at;
 }

@@ -16,12 +16,12 @@ public class Analyze {
     String plataform;
     String url;
 
-    Map<String, Integer> stars;
+    Map<Float, Long> reviews_per_stars;
     int numPositives;
     int numNegatives;
     
-    List<Comment> mostLikedComments;
-    List<Comment> recentComments;
+    List<Review> mostLikedComments;
+    List<Review> recentComments;
 
     Set<String> strengths;
     Set<String> weakness;

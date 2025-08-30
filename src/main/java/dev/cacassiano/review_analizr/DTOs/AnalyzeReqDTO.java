@@ -13,4 +13,7 @@ public class AnalyzeReqDTO {
     @NotBlank
     @URL
     String url;
+
+    @NotBlank
+    String plataform;
 }

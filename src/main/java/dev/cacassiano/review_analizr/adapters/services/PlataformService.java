@@ -1,10 +1,12 @@
 package dev.cacassiano.review_analizr.adapters.services;
 
 import java.util.List;
-import java.util.Map;
 
-import dev.cacassiano.review_analizr.core.entities.analyze.Comment;
+import org.jsoup.nodes.Element;
+
+import dev.cacassiano.review_analizr.core.entities.analyze.Review;
 
 public interface PlataformService {
-    Map<Integer, List<Comment>> getComments(String url);
+    public List<Review> getReviews(String url);
+    Review createReview(Element parent);
 }
