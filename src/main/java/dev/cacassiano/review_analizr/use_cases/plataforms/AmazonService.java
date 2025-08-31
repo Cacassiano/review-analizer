@@ -48,7 +48,7 @@ public class AmazonService implements PlataformService {
             .text()
             .split(" ");
         int year = Integer.parseInt(text[text.length-1]);
-        int month = Months.valueOf(text[text.length-3].replace('ç', 'c').toUpperCase()).getValue();
+        int month = Months.valueOf(text[text.length-3].substring(0, 3).toUpperCase()).getValue();
         int day = Integer.parseInt(text[text.length-5]);
 
         return LocalDate.of(year, month, day);

@@ -27,15 +27,21 @@ public class AnalyzeServiceImpl implements AnalyzeService{
         analyze.setPlataform(plataform);
         PlataformService currentService = plataformServices.get(plataform);
         List<Review> reviews = currentService.getReviews(url);
+
+        analyze.setReviews(reviews);
+        analyze.setNum_reviews(reviews.size());
+        
         reviews.forEach(e -> {
             if(e.getStars() > 3) analyze.setNumPositives(analyze.getNumPositives() + 1);
             else analyze.setNumNegatives(analyze.getNumNegatives() + 1);
         });
+        
         analyze.setReviews_per_stars(reviews.stream()
             .collect(Collectors.groupingBy(
                 Review::getStars,
                 Collectors.counting()))
         );
+        
         analyze.setMostLikedComments(getMostLiked(reviews));
         analyze.setRecentComments(getRecently(reviews));
 
