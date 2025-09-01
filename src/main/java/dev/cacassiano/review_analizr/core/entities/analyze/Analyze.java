@@ -3,6 +3,11 @@ package dev.cacassiano.review_analizr.core.entities.analyze;
 import java.util.List;
 import java.util.Map;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,17 +15,29 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+@Entity(name = "analyzes")
+@Table(name="analyzes")
 public class Analyze {
-    // TODO Plataform enum;
+    @Id @Column(unique=true, nullable=false, name="id")
+    Long id;
+    @Column(unique=false,nullable=false, name="plataform")
     String plataform;
+    @Column(unique=true, nullable=false, name="url")
     String url;
-    List<Review> reviews;
+    
+    
 
+    @Column(unique=false, nullable=false, name="num_reviews")
     int num_reviews;
-    Map<Float, Long> reviews_per_stars;
+    @Column(unique=false, nullable=false, name="num_positives")
     int numPositives;
+    @Column(unique=false, nullable=false, name="num_negatives")
     int numNegatives;
     
-    List<Review> mostLikedComments;
-    List<Review> recentComments;
+    @OneToMany(mappedBy="id")
+    List<Review> reviews;
+
+    // List<Review> mostLikedComments;
+    // List<Review> recentComments;
+    // Map<Float, Long> reviews_per_stars;
 }

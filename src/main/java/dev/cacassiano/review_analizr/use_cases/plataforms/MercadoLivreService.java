@@ -30,6 +30,7 @@ public class MercadoLivreService implements PlataformService {
         List<Review> reviews = new ArrayList<>();
         try {
             driver.get(url);
+
             WebElement cookieButton = new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(By.cssSelector(".cookie-consent-banner-opt-out__container button")));
             cookieButton.click();
@@ -37,10 +38,11 @@ public class MercadoLivreService implements PlataformService {
                 .until(ExpectedConditions.elementToBeClickable(By.className("show-more-click")));
             showMoreButton.click();
 
+            
             // Para pegar mais paginas de reviews
             // JavascriptExecutor js = (JavascriptExecutor) driver;
             // for (int i = 0; i < 5; i++) {
-            //     TimeUnit.MILLISECONDS.sleep();
+            //     TimeUnit.MILLISECONDS.sleep(20);
             //     js.executeScript("window.scrollTo(0,document.body.scrollHeight);");
             // }
 

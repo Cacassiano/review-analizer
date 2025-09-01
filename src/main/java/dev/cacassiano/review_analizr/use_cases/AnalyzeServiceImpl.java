@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import dev.cacassiano.review_analizr.adapters.repositories.AnalyzeRepository;
 import dev.cacassiano.review_analizr.adapters.services.AnalyzeService;
 import dev.cacassiano.review_analizr.adapters.services.PlataformService;
 import dev.cacassiano.review_analizr.core.entities.analyze.Analyze;
@@ -18,6 +19,9 @@ public class AnalyzeServiceImpl implements AnalyzeService{
 
     @Autowired
     private Map<String, PlataformService> plataformServices;
+    @Autowired
+    private AnalyzeRepository analyzeRepository;
+    
     private final int max_reviews = 3;
 
     @Override
@@ -35,17 +39,16 @@ public class AnalyzeServiceImpl implements AnalyzeService{
             if(e.getStars() > 3) analyze.setNumPositives(analyze.getNumPositives() + 1);
             else analyze.setNumNegatives(analyze.getNumNegatives() + 1);
         });
-        
-        analyze.setReviews_per_stars(reviews.stream()
-            .collect(Collectors.groupingBy(
-                Review::getStars,
-                Collectors.counting()))
-        );
-        
-        analyze.setMostLikedComments(getMostLiked(reviews));
-        analyze.setRecentComments(getRecently(reviews));
 
         return analyze;
+    }
+
+    private Map<Float, Long> getReviewsPerStar(List<Review> reviews) {
+        return reviews.stream()
+            .collect(Collectors.groupingBy(
+                    Review::getStars,
+                    Collectors.counting()
+            ));
     }
 
     public List<Review> getRecently(List<Review> reviews) {
@@ -68,5 +71,10 @@ public class AnalyzeServiceImpl implements AnalyzeService{
             return reviewSortedByLikes.subList(0,maxSize);
         }
         return null;
+    }
+
+    @Override
+    public Analyze getAnalyze(Long id) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
