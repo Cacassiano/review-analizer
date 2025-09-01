@@ -4,30 +4,35 @@ import java.util.List;
 import java.util.Map;
 
 import dev.cacassiano.review_analizr.core.entities.analyze.Analyze;
-import dev.cacassiano.review_analizr.core.entities.analyze.Review;
 
 public record AnalyzeDetailsRespDTO(
     String plataform,
     String url,
-    List<Review> reviews,
+    List<ReviewRespDTO> reviews,
     int num_reviews,
     Map<Float, Long> reviews_per_stars,
     int numPositives,
     int numNegatives,
-    List<Review> mostLikedComments,
-    List<Review> recentComments
+    List<ReviewRespDTO> mostLikedComments,
+    List<ReviewRespDTO> recentComments
 ){
-    public AnalyzeDetailsRespDTO(Analyze analyze) {
+    public AnalyzeDetailsRespDTO(
+        Analyze analyze,
+        List<ReviewRespDTO> reviews,
+        Map<Float, Long> reviews_per_stars,
+        List<ReviewRespDTO> mostLikedComments,
+        List<ReviewRespDTO> recentComments  
+    ) {
         this(
             analyze.getPlataform(),
             analyze.getUrl(),
-            analyze.getReviews(),
+            reviews,
             analyze.getNum_reviews(),
-            analyze.getReviews_per_stars(),
+            reviews_per_stars,
             analyze.getNumPositives(),
             analyze.getNumPositives(),
-            analyze.getMostLikedComments(),
-            analyze.getRecentComments()
+            mostLikedComments,
+            recentComments
         );
     }
 }
